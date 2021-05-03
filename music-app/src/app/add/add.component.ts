@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ɵangular_packages_router_router_o } from '@angular/router';
 import { AlbumModel } from 'src/album.model';
 import { AlbumService } from '../services/album.service';
 
@@ -18,6 +18,8 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem("user") == null)
+      this.router.navigate(['login']);
   }
 
   saveAlbum() {

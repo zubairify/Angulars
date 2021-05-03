@@ -29,4 +29,12 @@ export class AlbumService {
   findByTitle(title : string) {
     return this.albums.find(x => x.title == title);
   }
+
+  findByArtist(artist : string) {
+    return this.albums.find(x => x.artist == artist);
+  }
+
+  findByGenre(genre : string) {
+    return this.albums.find(x => x.genre == genre);
+  }
 }

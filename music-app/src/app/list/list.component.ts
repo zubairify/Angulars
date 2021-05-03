@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlbumModel } from 'src/album.model';
 import { AlbumService } from '../services/album.service';
 
@@ -10,10 +11,12 @@ import { AlbumService } from '../services/album.service';
 export class ListComponent implements OnInit {
   list : AlbumModel[] = [];
 
-  constructor(private service : AlbumService) { }
+  constructor(private service : AlbumService, private router : Router) { }
 
   ngOnInit(): void {
     this.list = this.service.getList();
+    if(localStorage.getItem("user") == null)
+      this.router.navigate(['login']);
   }
 
   delete(index : number) {

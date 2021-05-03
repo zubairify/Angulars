@@ -1,7 +1,7 @@
-<form (ngSubmit)="search">
-    <label for="title">Enter Title</label>
+<form (ngSubmit)="search()">
+    <label for="query">Enter Query</label>
     <input name="query" [(ngModel)]="query" class="form-control">
-    <input type="radio" name="criteria" [(ngModel)]="criteria" value="Title" [checked]="this.criteria = 'Title'">Title
+    <input type="radio" name="criteria" [(ngModel)]="criteria" value="Title">Title
     <input type="radio" name="criteria" [(ngModel)]="criteria" value="Artist">Artist
     <input type="radio" name="criteria" [(ngModel)]="criteria" value="Genre">Genre
     <button type="submit">Search Title</button>
