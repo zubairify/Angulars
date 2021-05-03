@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlbumModel } from 'src/album.model';
 import { AlbumService } from '../services/album.service';
 
@@ -10,9 +11,8 @@ import { AlbumService } from '../services/album.service';
 export class AddComponent implements OnInit {
   album : AlbumModel;
   generes : string[];
-  submitted : boolean;
 
-  constructor(private service : AlbumService) { 
+  constructor(private service : AlbumService, private router : Router) { 
     this.album = new AlbumModel();
     this.generes = ["Rock","Jazz","Pop","Rap"];
   }
@@ -22,6 +22,6 @@ export class AddComponent implements OnInit {
 
   saveAlbum() {
     this.service.addAlbum(this.album);
-    this.submitted = true;
+    this.router.navigate(['list']);
   }
 }

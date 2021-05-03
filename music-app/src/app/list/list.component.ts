@@ -16,4 +16,17 @@ export class ListComponent implements OnInit {
     this.list = this.service.getList();
   }
 
+  delete(index : number) {
+    var ans = confirm("Are you sure to delete?");
+    if(ans)
+      this.service.delAlbum(index);
+  }
+
+  orderByTitle() {
+    this.service.sortByTitle();
+  }
+
+  orderByArtist() {
+    this.list.sort((a,b) => a.artist > b.artist ? 1 : ((a.artist < b.artist ? -1 : 0)));
+  }
 }
