@@ -14,19 +14,20 @@ export class ListComponent implements OnInit {
   constructor(private service : AlbumService, private router : Router) { }
 
   ngOnInit(): void {
-    this.list = this.service.getList();
+    this.service.getList().then(data => this.list = data);
+    // this.service.getList().subscribe(data => this.list = data);
     if(localStorage.getItem("user") == null)
       this.router.navigate(['login']);
   }
 
-  delete(index : number) {
+  delete(id : number) {
     var ans = confirm("Are you sure to delete?");
     if(ans)
-      this.service.delAlbum(index);
+      this.service.delAlbum(id);
   }
 
   orderByTitle() {
-    this.service.sortByTitle();
+    this.list.sort((a,b) => a.title > b.title ? 1 : ((a.title < b.title) ? -1 : 0));
   }
 
   orderByArtist() {

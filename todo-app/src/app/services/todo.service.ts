@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TodoModel } from 'src/todo.model';
+import { UserModel } from 'src/user.model';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +13,23 @@ export class TodoService {
   constructor(private http : HttpClient) { }
 
   createTodo(todo : TodoModel) {
-    this.http.post(this.baseUri, todo).subscribe(data => data = todo);
+    let user : UserModel;
+    user = JSON.parse(localStorage.getItem('user'));
+    this.http.post(this.baseUri + "/" + user.userid, todo).subscribe(data => data = todo);
   }
 
   todoById(id : number) {
     return this.http.get<TodoModel>(this.baseUri+"/" + id);
   }
 
-  todoByUser(userid : number) {
-    return this.http.get<TodoModel[]>(this.baseUri+"/user/" + userid);
+  async todoByUser() {
+    let user : UserModel;
+    user = JSON.parse(localStorage.getItem('user'));
+    return await this.http.get<TodoModel[]>(this.baseUri+"/user/" + user.userid)
+      .pipe(delay(100)).toPromise();
+  }
+
+  deleteTodo(id : number) {
+    // logic to delete todo on backend
   }
 }

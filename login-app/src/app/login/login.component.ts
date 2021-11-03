@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   constructor() { 
     this.auth = new LoginModel();
+    // this.auth.userid="blank";
   }
 
   ngOnInit(): void {

@@ -5,10 +5,10 @@
         <th>Genre</th>
         <th>Action</th>
     </tr>
-    <tr *ngFor="let a of list; let i = index">
+    <tr *ngFor="let a of list">
         <td>{{ a.title }}</td>
         <td>{{ a.artist }}</td>
         <td>{{ a.genre }}</td>
-        <td><button class="btn btn-warning" (click)="delete(i)">Delete</button></td>
+        <td><button class="btn btn-warning" (click)="delete({{a.id}})">Delete</button></td>
     </tr>
 </table>

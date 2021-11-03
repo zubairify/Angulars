@@ -24,10 +24,11 @@ export class SearchComponent implements OnInit {
 
   search() {
     if(this.criteria == "Title")
-      this.album = this.service.findByTitle(this.query);
-    else if(this.criteria == "Artist")
-      this.album = this.service.findByArtist(this.query);
-    else if(this.criteria == "Genre")
-      this.album = this.service.findByGenre(this.query);
+      this.service.findByTitle(this.query).subscribe(
+          data => this.album = data);
+    // else if(this.criteria == "Artist")
+    //   this.album = this.service.findByArtist(this.query);
+    // else if(this.criteria == "Genre")
+    //   this.album = this.service.findByGenre(this.query);
   }
 }
